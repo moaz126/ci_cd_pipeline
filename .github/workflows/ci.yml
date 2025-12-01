@@ -14,6 +14,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Decode secret file
+        run: |
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > upload-keystore.jks
+
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+
+      - name: Read the decoded file
+        run: |
+          echo "Decoded content is:"
+          cat upload-keystore.jks
+
       # Step 2 — Setup Flutter SDK
       - name: Setup Flutter
         uses: subosito/flutter-action@v2

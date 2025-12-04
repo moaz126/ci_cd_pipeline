@@ -32,7 +32,7 @@ jobs:
       - name: Decode keystore
         run: |
           echo "$KEYSTORE_BASE64" > release-keystore.jks.base64 || true
-          base64 -d release-keystore.jks.base64 > android/release-keystore.jks
+          base64 -d release-keystore.jks.base64 > android/app/release-keystore.jks
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
